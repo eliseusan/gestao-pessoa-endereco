@@ -1,5 +1,6 @@
 package com.attornatus.test.attornatuspessoa.pessoa.application.api.controller;
 
+import com.attornatus.test.attornatuspessoa.pessoa.application.api.requests.PessoaAlteracaoRequest;
 import com.attornatus.test.attornatuspessoa.pessoa.application.api.requests.PessoaRequest;
 import com.attornatus.test.attornatuspessoa.pessoa.application.api.responses.PessoaDetalhadoResponse;
 import com.attornatus.test.attornatuspessoa.pessoa.application.api.responses.PessoaListResponse;
@@ -25,5 +26,10 @@ public interface PessoaAPI {
     @GetMapping(value = "/{idPessoa}")
     @ResponseStatus(code = HttpStatus.OK)
     PessoaDetalhadoResponse buscaPessoaPeloId(@PathVariable UUID idPessoa);
+
+    @PatchMapping(value= "/{idPessoa}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void alteraPessoa(@PathVariable UUID idPessoa,
+                      @Valid @RequestBody PessoaAlteracaoRequest pessoaAlteracaoRequest);
 
 }

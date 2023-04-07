@@ -12,11 +12,13 @@ public class PessoaDetalhadoResponse {
     private String nomePessoa;
     private String telefone;
     private LocalDateTime dataHoraDoCadastro;
+    private LocalDateTime dataDaAlteracaoDoCadastro;
 
     public PessoaDetalhadoResponse(Pessoa pessoa) {
         this.idPessoa = pessoa.getIdPessoa();
         this.nomePessoa = pessoa.getNomePessoa();
         this.telefone = pessoa.getTelefone();
         this.dataHoraDoCadastro = pessoa.getDataHoraDoCadastro();
+        this.dataDaAlteracaoDoCadastro = pessoa.getDataDaAlteracaoDoCadastro();
     }
 }

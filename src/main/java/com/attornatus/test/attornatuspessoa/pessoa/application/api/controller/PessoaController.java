@@ -1,5 +1,6 @@
 package com.attornatus.test.attornatuspessoa.pessoa.application.api.controller;
 
+import com.attornatus.test.attornatuspessoa.pessoa.application.api.requests.PessoaAlteracaoRequest;
 import com.attornatus.test.attornatuspessoa.pessoa.application.api.requests.PessoaRequest;
 import com.attornatus.test.attornatuspessoa.pessoa.application.api.responses.PessoaDetalhadoResponse;
 import com.attornatus.test.attornatuspessoa.pessoa.application.api.responses.PessoaListResponse;
@@ -41,5 +42,13 @@ public class PessoaController implements PessoaAPI {
         var pessoa = pessoaService.buscaPessoaPeloId(idPessoa);
         log.info("[finaliza] PessoaController - buscaPessoaPeloId");
         return pessoa;
+    }
+
+    @Override
+    public void alteraPessoa(UUID idPessoa, PessoaAlteracaoRequest pessoaAlteracaoRequest) {
+        log.info("[inicia] PessoaController - alteraPessoa");
+        log.info("[idPessoa] {}", idPessoa);
+        pessoaService.alteraPessoa(idPessoa,pessoaAlteracaoRequest);
+        log.info("[finaliza] PessoaController - alteraPessoa");
     }
 }

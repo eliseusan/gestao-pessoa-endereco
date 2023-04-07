@@ -1,5 +1,6 @@
 package com.attornatus.test.attornatuspessoa.pessoa.application.service;
 
+import com.attornatus.test.attornatuspessoa.pessoa.application.api.requests.PessoaAlteracaoRequest;
 import com.attornatus.test.attornatuspessoa.pessoa.application.api.requests.PessoaRequest;
 import com.attornatus.test.attornatuspessoa.pessoa.application.api.responses.PessoaDetalhadoResponse;
 import com.attornatus.test.attornatuspessoa.pessoa.application.api.responses.PessoaListResponse;
@@ -41,5 +42,14 @@ public class PessoaApplicationService implements PessoaService {
         Pessoa pessoa = pessoaRepository.buscaPessoaPeloId(idPessoa);
         log.info("[finaliza] PessoaApplicationService - buscaPorId");
         return new PessoaDetalhadoResponse(pessoa);
+    }
+
+    @Override
+    public void alteraPessoa(UUID idPessoa, PessoaAlteracaoRequest pessoaAlteracaoRequest) {
+        log.info("[inicia] PessoaApplicationService - alteraPessoa");
+        Pessoa pessoa = pessoaRepository.buscaPessoaPeloId(idPessoa);
+        pessoa.altera(pessoaAlteracaoRequest);
+        pessoaRepository.salvaPessoa(pessoa);
+        log.info("[finaliza] PessoaApplicationService - alteraPessoa");
     }
 }
