@@ -1,6 +1,7 @@
 package com.attornatus.test.attornatuspessoa.pessoa.application.service;
 
 import com.attornatus.test.attornatuspessoa.pessoa.application.api.requests.PessoaRequest;
+import com.attornatus.test.attornatuspessoa.pessoa.application.api.responses.PessoaDetalhadoResponse;
 import com.attornatus.test.attornatuspessoa.pessoa.application.api.responses.PessoaListResponse;
 import com.attornatus.test.attornatuspessoa.pessoa.application.api.responses.PessoaResponse;
 import com.attornatus.test.attornatuspessoa.pessoa.application.repository.PessoaRepository;
@@ -10,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -31,5 +33,13 @@ public class PessoaApplicationService implements PessoaService {
         List<Pessoa> listaDePessoas = pessoaRepository.buscaTodasPessoas();
         log.info("[finaliza] PessoaApplicationService - buscaTodasPessoas");
         return PessoaListResponse.converte(listaDePessoas);
+    }
+
+    @Override
+    public PessoaDetalhadoResponse buscaPessoaPeloId(UUID idPessoa) {
+        log.info("[inicia] PessoaApplicationService - buscaPorId");
+        Pessoa pessoa = pessoaRepository.buscaPessoaPeloId(idPessoa);
+        log.info("[finaliza] PessoaApplicationService - buscaPorId");
+        return new PessoaDetalhadoResponse(pessoa);
     }
 }
