@@ -20,7 +20,7 @@ public class PessoaApplicationService implements PessoaService {
     @Override
     public PessoaResponse criaPessoa(PessoaRequest pessoaRequest) {
         log.info("[inicia] PessoaApplicationService - criaPessoa");
-        Pessoa pessoa = pessoaRepository.salvaCliente(new Pessoa(pessoaRequest));
+        Pessoa pessoa = pessoaRepository.salvaPessoa(new Pessoa(pessoaRequest));
         log.info("[finaliza] PessoaApplicationService - criaPessoa");
         return new PessoaResponse(pessoa.getIdPessoa());
     }

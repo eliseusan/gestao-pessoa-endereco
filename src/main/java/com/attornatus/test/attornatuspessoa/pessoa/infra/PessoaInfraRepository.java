@@ -16,7 +16,7 @@ public class PessoaInfraRepository implements PessoaRepository {
     private final PessoaSpringJPARepository pessoaSpringJPARepository;
 
     @Override
-    public Pessoa salvaCliente(Pessoa pessoa) {
+    public Pessoa salvaPessoa(Pessoa pessoa) {
         log.info("[inicia] PessoaInfraRepository - salvaCobranca");
         var pessoaSalva = pessoaSpringJPARepository.save(pessoa);
         log.info("[finaliza] PessoaInfraRepository - salvaCobranca");
