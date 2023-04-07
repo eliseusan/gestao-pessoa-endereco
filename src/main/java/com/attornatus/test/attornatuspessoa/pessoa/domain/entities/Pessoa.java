@@ -1,5 +1,6 @@
 package com.attornatus.test.attornatuspessoa.pessoa.domain.entities;
 
+import com.attornatus.test.attornatuspessoa.pessoa.application.api.requests.PessoaRequest;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,4 +30,11 @@ import java.util.UUID;
         private String telefone;
         private LocalDateTime dataHoraDoCadastro;
         private LocalDateTime dataDaAlteracaoDoCadastro;
-}
+
+        public Pessoa(PessoaRequest pessoaRequest) {
+            this.idPessoa = UUID.randomUUID();
+            this.nomePessoa = pessoaRequest.getNomePessoa();
+            this.telefone= pessoaRequest.getTelefone();
+            this.dataHoraDoCadastro = LocalDateTime.now();
+        }
+    }
