@@ -1,5 +1,6 @@
 package com.attornatus.test.attornatuspessoa.endereco.domain.entities;
 
+import com.attornatus.test.attornatuspessoa.endereco.application.api.requests.EnderecoRequest;
 import com.attornatus.test.attornatuspessoa.endereco.domain.enums.StatusEndereco;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -35,4 +36,15 @@ public class Endereco {
     private LocalDateTime dataHoraDoCadastro;
     private LocalDateTime dataDaAlteracaoDoCadastro;
 
+
+    public Endereco(EnderecoRequest enderecoRequest) {
+        this.idEndereco = UUID.randomUUID();;
+        this.idPessoaEndereco = enderecoRequest.getIdPessoaEndereco();
+        this.logradouro = enderecoRequest.getLogradouro();
+        this.cep = enderecoRequest.getCep();
+        this.numero = enderecoRequest.getNumero();
+        this.cidade = enderecoRequest.getCidade();
+        this.statusEndereco = enderecoRequest.getStatusEndereco();
+        this.dataHoraDoCadastro = LocalDateTime.now();
+    }
 }
