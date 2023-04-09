@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -26,8 +28,10 @@ import java.util.UUID;
         @Column(columnDefinition = "uuid", name = "idPessoa", updatable = false, unique = true, nullable = false)
         private UUID idPessoa;
         @NotBlank(message = "Insira seu nome")
+        @Size(min = 3, max = 30)
         private String nomePessoa;
         @NotBlank(message = "Insira um telefone")
+        @Pattern(regexp = "\\(\\d{2}\\)\\s\\d{5}-\\d{4}", message = "O número de telefone deve estar no formato (xx) 9xxxx-xxxx")
         private String telefone;
         private LocalDateTime dataHoraDoCadastro;
         private LocalDateTime dataDaAlteracaoDoCadastro;

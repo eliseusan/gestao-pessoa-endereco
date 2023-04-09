@@ -7,7 +7,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Value
-public class PessoaRequest {
+public class PessoaAlteracaoRequest {
     @NotBlank(message = "Insira seu nome")
     @Size(min = 3, max = 30)
     private String nomePessoa;
