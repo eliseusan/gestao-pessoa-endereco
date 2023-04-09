@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -26,8 +27,9 @@ public class Endereco {
     @NotBlank
     private String logradouro;
     @NotBlank
+    @Pattern(regexp = "\\d{5}-\\d{3}", message = "CEP inválido")
     private String cep;
-    @NotBlank
+    @NotNull
     private Integer numero;
     @NotBlank
     private String cidade;

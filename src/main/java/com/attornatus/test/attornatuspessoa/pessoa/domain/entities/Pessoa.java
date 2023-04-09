@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -28,6 +29,7 @@ import java.util.UUID;
         @NotBlank(message = "Insira seu nome")
         private String nomePessoa;
         @NotBlank(message = "Insira um telefone")
+        @Pattern(regexp = "(\\d{2}) \\d{5}-\\d{4}", message = "CEP inválido")
         private String telefone;
         private LocalDateTime dataHoraDoCadastro;
         private LocalDateTime dataDaAlteracaoDoCadastro;
