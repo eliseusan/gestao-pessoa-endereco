@@ -23,7 +23,7 @@ public class EnderecoApplicationService implements EnderecoService{
     @Override
     public EnderecoResponse criaEndereco(EnderecoRequest enderecoRequest) {
         log.info("[start] EnderecoApplicationService - criaEndereco");
-        pessoaService.buscaPessoaPeloId(enderecoRequest.getIdPessoaEndereco());
+        pessoaService.buscaPessoaPeloId(enderecoRequest.getReferenceIdPessoa());
         Endereco endereco = enderecoRepository.salvaEnderecoDaPessoa(new Endereco(enderecoRequest));
         log.info("[finish] EnderecoApplicationService - criaEndereco");
         return new EnderecoResponse(endereco.getIdEndereco());

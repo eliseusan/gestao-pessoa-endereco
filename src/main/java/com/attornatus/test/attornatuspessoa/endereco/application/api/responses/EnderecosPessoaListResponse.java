@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class EnderecosPessoaListResponse {
     private UUID idEndereco ;
     @NotNull
-    private UUID idPessoaEndereco ;
+    private UUID referenceIdPessoa;
     @NotBlank
     private String logradouro;
     @NotBlank
@@ -25,18 +25,16 @@ public class EnderecosPessoaListResponse {
     private String cidade;
     private StatusEndereco statusEndereco;
     private LocalDateTime dataHoraDoCadastro;
-    private LocalDateTime dataDaAlteracaoDoCadastro;
 
     public EnderecosPessoaListResponse(Endereco endereco) {
         this.idEndereco = endereco.getIdEndereco();
-        this.idPessoaEndereco = endereco.getIdPessoaEndereco();
+        this.referenceIdPessoa = endereco.getReferenceIdPessoa();
         this.logradouro = endereco.getLogradouro();
         this.cep = endereco.getCep();
         this.numero = endereco.getNumero();
         this.cidade = endereco.getCidade();
         this.statusEndereco = endereco.getStatusEndereco();
         this.dataHoraDoCadastro = endereco.getDataHoraDoCadastro();
-        this.dataDaAlteracaoDoCadastro = endereco.getDataDaAlteracaoDoCadastro();
     }
 
     public static List<EnderecosPessoaListResponse> converte(List<Endereco> enderecosPessoa) {

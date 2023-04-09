@@ -6,5 +6,4 @@ import java.util.UUID;
 @Value
 public class EnderecoResponse {
     private UUID idEndereco ;
-
 }

@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -22,9 +23,10 @@ public class Endereco {
     @Column(columnDefinition = "uuid", name = "idEndereco", updatable = false, unique = true, nullable = false)
     private UUID idEndereco ;
     @NotNull
-    @Column(columnDefinition = "uuid", name = "idPessoa", nullable = false)
-    private UUID idPessoaEndereco ;
+    @Column(columnDefinition = "uuid", name = "referenceIdPessoa", nullable = false)
+    private UUID referenceIdPessoa;
     @NotBlank
+    @Size(min = 3, max = 30)
     private String logradouro;
     @NotBlank
     @Pattern(regexp = "\\d{5}-\\d{3}", message = "CEP inválido")
@@ -32,16 +34,15 @@ public class Endereco {
     @NotNull
     private Integer numero;
     @NotBlank
+    @Size(min = 3, max = 30)
     private String cidade;
     @Enumerated(EnumType.STRING)
     private StatusEndereco statusEndereco;
     private LocalDateTime dataHoraDoCadastro;
-    private LocalDateTime dataDaAlteracaoDoCadastro;
-
 
     public Endereco(EnderecoRequest enderecoRequest) {
         this.idEndereco = UUID.randomUUID();;
-        this.idPessoaEndereco = enderecoRequest.getIdPessoaEndereco();
+        this.referenceIdPessoa = enderecoRequest.getReferenceIdPessoa();
         this.logradouro = enderecoRequest.getLogradouro();
         this.cep = enderecoRequest.getCep();
         this.numero = enderecoRequest.getNumero();
