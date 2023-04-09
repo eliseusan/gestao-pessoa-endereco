@@ -5,7 +5,9 @@ import com.attornatus.test.attornatuspessoa.endereco.application.api.responses.E
 import com.attornatus.test.attornatuspessoa.endereco.application.api.responses.EnderecosPessoaListResponse;
 import com.attornatus.test.attornatuspessoa.endereco.application.repository.EnderecoRepository;
 import com.attornatus.test.attornatuspessoa.endereco.domain.entities.Endereco;
+import com.attornatus.test.attornatuspessoa.pessoa.application.repository.PessoaRepository;
 import com.attornatus.test.attornatuspessoa.pessoa.application.service.PessoaService;
+import com.attornatus.test.attornatuspessoa.pessoa.domain.entities.Pessoa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ import java.util.UUID;
 public class EnderecoApplicationService implements EnderecoService{
     private final PessoaService pessoaService;
     private final EnderecoRepository enderecoRepository;
+    private final PessoaRepository pessoaRepository;
 
     @Override
     public EnderecoResponse criaEndereco(EnderecoRequest enderecoRequest) {
@@ -33,8 +36,9 @@ public class EnderecoApplicationService implements EnderecoService{
     public List<EnderecosPessoaListResponse> buscaEnderecosPessoaPeloId(UUID idPessoa) {
         log.info("[inicia] EnderecoApplicationService - buscaEnderecosPessoaPeloId");
         pessoaService.buscaPessoaPeloId(idPessoa);
+        List<Pessoa> listaDePessoas = pessoaRepository.buscaTodasPessoas();
         List<Endereco> enderecosPessoa = enderecoRepository.buscaEnderecosoDaPessoaPeloId(idPessoa) ;
         log.info("[finaliza] EnderecoApplicationService - buscaEnderecosPessoaPeloId");
-        return EnderecosPessoaListResponse.converte(enderecosPessoa);
+        return EnderecosPessoaListResponse.converte(enderecosPessoa, listaDePessoas);
     }
 }
