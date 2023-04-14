@@ -41,7 +41,7 @@ public class Endereco {
     private LocalDateTime dataHoraDoCadastro;
 
     public Endereco(EnderecoRequest enderecoRequest) {
-        this.idEndereco = UUID.randomUUID();;
+        this.idEndereco = UUID.randomUUID();
         this.referenceIdPessoa = enderecoRequest.getReferenceIdPessoa();
         this.logradouro = enderecoRequest.getLogradouro();
         this.cep = enderecoRequest.getCep();
