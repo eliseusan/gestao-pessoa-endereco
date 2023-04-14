@@ -13,7 +13,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Log4j2
 public class EnderecoInfraRepository implements EnderecoRepository {
-
     private final EnderecoSpringJPARepository enderecoSpringJPARepository;
 
     @Override
